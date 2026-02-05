@@ -42,6 +42,4 @@ const validateUser = async (username, password) => {
   }
 };
 
-addUser({ username: "admin", email: "admin@admin.com", password: "admin" });
-
 export { readUsers, writeUsers, addUser, validateUser };
