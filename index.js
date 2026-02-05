@@ -7,6 +7,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 import { readPosts, writePosts, addPost } from "./Modules/PostsHandler.js";
+import sessionMiddleware from "./Modules/session.js";
+import { readUsers, writeUsers, addUser, validateUser } from "./Modules/validationUser.js";
 
 const app = express();
 
@@ -15,10 +17,15 @@ app.set("views", "./views");
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(sessionMiddleware);
 
 app.get("/", async (req, res) => {
-  let posts = await readPosts();
-  res.render("index.ejs", { posts });
+  if (!req.session.isLoggedIn) {
+    res.redirect("/login");
+  } else {
+    let posts = await readPosts();
+    res.render("index.ejs", { posts });
+  }
 });
 
 app.get("/add-post", (req, res) => {
@@ -37,7 +44,14 @@ app.get("/login", (req, res) => {
 
 app.post("/login", (req, res) => {
   let { username, password } = req.body;
-  res.redirect("/");
+  const user = validateUser(username, password);
+  if (user) {
+    req.session.isLoggedIn = true;
+    req.session.user = user;
+    res.redirect("/");
+  } else {
+    res.redirect("/login");
+  }
 });
 
 app.get("/register", (req, res) => {
@@ -45,8 +59,19 @@ app.get("/register", (req, res) => {
 });
 
 app.post("/register", (req, res) => {
-  let { username, password } = req.body;
-  res.redirect("/");
+  let { username, password, email } = req.body;
+  addUser({ username, password, email });
+  res.redirect("/login");
+});
+
+app.get("/logout", (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.redirect("/login");
+    }
+  });
 });
 
 app.listen(3000, () => {

@@ -1,9 +1,22 @@
 <%-include("partials/header.ejs") %>
+<script>
+  function togglePassword() {
+    const password = document.getElementById("password");
+    const showPassword = document.getElementById("showPassword");
+    if (showPassword.checked) {
+      password.type = "text";
+    } else {
+      password.type = "password";
+    }
+  }
+</script>
 
 <h1>Login</h1>
 <form action="/login" method="POST">
   <input type="text" name="username" placeholder="Username" />
-  <input type="password" name="password" placeholder="Password" />
+  <input type="password" name="password" placeholder="Password" id="password" />
+  <input type="checkbox" name="showPassword" id="showPassword" onclick="togglePassword()" />
+  <label for="showPassword">Show Password</label>
   <button type="submit">Login</button>
 </form>
 <a href="/register">register</a>

@@ -10,5 +10,11 @@
     "username": "hadeer",
     "email": "hadeer@hadeer.com",
     "password": "hadeer"
+  },
+  {
+    "id": 3,
+    "username": "fromweb",
+    "email": "fromweb@fromweb.com",
+    "password": "fromweb"
   }
 ]

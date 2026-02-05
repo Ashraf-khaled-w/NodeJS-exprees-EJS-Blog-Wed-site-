@@ -26,7 +26,14 @@ const writeUsers = async (newUsers) => {
 const addUser = async (userContent) => {
   try {
     const allUsers = (await readUsers()) || [];
-    allUsers.push(userContent);
+    const newID = allUsers.length > 0 ? Math.max(...allUsers.map((user) => user.id)) + 1 : 1;
+    const newUser = {
+      id: newID,
+      username: userContent.username.toLowerCase(),
+      email: userContent.email.toLowerCase(),
+      password: userContent.password.toLowerCase(),
+    };
+    allUsers.push(newUser);
     await writeUsers(allUsers);
   } catch (error) {
     console.log(error);
