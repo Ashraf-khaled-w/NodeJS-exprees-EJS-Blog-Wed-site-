@@ -3,18 +3,21 @@
     "id": 1,
     "username": "admin",
     "email": "admin@admin.com",
-    "password": "admin"
+    "password": "admin",
+    "role": "admin"
   },
   {
     "id": 2,
     "username": "hadeer",
     "email": "hadeer@hadeer.com",
-    "password": "hadeer"
+    "password": "hadeer",
+    "role": "auther"
   },
   {
     "id": 3,
     "username": "fromweb",
     "email": "fromweb@fromweb.com",
-    "password": "fromweb"
+    "password": "fromweb",
+    "role": "user"
   }
 ]

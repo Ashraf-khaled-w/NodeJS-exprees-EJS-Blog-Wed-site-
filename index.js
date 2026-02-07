@@ -42,9 +42,9 @@ app.get("/login", (req, res) => {
   res.render("Login.ejs");
 });
 
-app.post("/login", (req, res) => {
+app.post("/login", async (req, res) => {
   let { username, password } = req.body;
-  const user = validateUser(username, password);
+  const user = await validateUser(username, password);
   if (user) {
     req.session.isLoggedIn = true;
     req.session.user = user;

@@ -32,6 +32,7 @@ const addUser = async (userContent) => {
       username: userContent.username.toLowerCase(),
       email: userContent.email.toLowerCase(),
       password: userContent.password.toLowerCase(),
+      role: "user",
     };
     allUsers.push(newUser);
     await writeUsers(allUsers);
