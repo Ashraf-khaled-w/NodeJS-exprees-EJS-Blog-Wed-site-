@@ -1,6 +1,7 @@
 import fs from "fs/promises";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
+import { queueUserSafly } from "./eventQueue.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -25,17 +26,19 @@ const writeUsers = async (newUsers) => {
 
 const addUser = async (userContent) => {
   try {
-    const allUsers = (await readUsers()) || [];
-    const newID = allUsers.length > 0 ? Math.max(...allUsers.map((user) => user.id)) + 1 : 1;
-    const newUser = {
-      id: newID,
-      username: userContent.username.toLowerCase(),
-      email: userContent.email.toLowerCase(),
-      password: userContent.password.toLowerCase(),
-      role: "user",
-    };
-    allUsers.push(newUser);
-    await writeUsers(allUsers);
+    await queueUserSafly(async () => {
+      const allUsers = (await readUsers()) || [];
+      const newID = allUsers.length > 0 ? Math.max(...allUsers.map((user) => user.id)) + 1 : 1;
+      const newUser = {
+        id: newID,
+        username: userContent.username.toLowerCase(),
+        email: userContent.email.toLowerCase(),
+        password: userContent.password.toLowerCase(),
+        role: "user",
+      };
+      allUsers.push(newUser);
+      await writeUsers(allUsers);
+    });
   } catch (error) {
     console.log(error);
   }

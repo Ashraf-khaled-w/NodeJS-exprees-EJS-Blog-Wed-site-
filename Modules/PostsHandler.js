@@ -1,6 +1,7 @@
 import fs from "fs/promises";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
+import { queuePostSafly } from "./eventQueue.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -25,9 +26,11 @@ export const writePosts = async (newPost) => {
 
 export const addPost = async (postContent) => {
   try {
-    const allPosts = (await readPosts()) || [];
-    allPosts.push(postContent);
-    await writePosts(allPosts);
+    await queuePostSafly(async () => {
+      const allPosts = (await readPosts()) || [];
+      allPosts.push(postContent);
+      await writePosts(allPosts);
+    });
   } catch (error) {
     console.log(error);
   }
