@@ -48,7 +48,19 @@ app.post("/login", async (req, res) => {
   if (user) {
     req.session.isLoggedIn = true;
     req.session.user = user;
-    res.redirect("/");
+    if (user.role === "admin") {
+      res.redirect("/admin");
+    } else {
+      res.redirect("/");
+    }
+  } else {
+    res.redirect("/login");
+  }
+});
+
+app.get("/admin", (req, res) => {
+  if (req.session.isLoggedIn && req.session.user && req.session.user.role === "admin") {
+    res.render("admin.ejs");
   } else {
     res.redirect("/login");
   }
