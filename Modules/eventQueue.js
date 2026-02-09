@@ -8,7 +8,7 @@ const queueUserSafly = async (data) => {
   try {
     await data();
   } catch (err) {
-    console.log(err);
+    throw err;
   } finally {
     isWritingUser = false;
   }
@@ -24,7 +24,7 @@ const queuePostSafly = async (data) => {
   try {
     await data();
   } catch (err) {
-    console.log(err);
+    throw err;
   } finally {
     isWritingPost = false;
   }
