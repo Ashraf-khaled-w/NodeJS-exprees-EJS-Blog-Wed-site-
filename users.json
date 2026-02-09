@@ -19,5 +19,12 @@
     "email": "fromweb@fromweb.com",
     "password": "fromweb",
     "role": "user"
+  },
+  {
+    "id": 4,
+    "username": "userformweb",
+    "email": "user@user.com",
+    "password": "userformweb",
+    "role": "user"
   }
 ]

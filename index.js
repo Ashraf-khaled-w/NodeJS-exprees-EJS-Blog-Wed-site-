@@ -58,9 +58,9 @@ app.get("/register", (req, res) => {
   res.render("register.ejs");
 });
 
-app.post("/register", (req, res) => {
+app.post("/register", async (req, res) => {
   let { username, password, email } = req.body;
-  addUser({ username, password, email });
+  await addUser({ username, password, email });
   res.redirect("/login");
 });
 
