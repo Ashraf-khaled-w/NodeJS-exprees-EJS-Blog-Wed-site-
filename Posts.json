@@ -1,22 +1,44 @@
 [
   {
-    "title": "Post 1",
-    "content": "Content of post 1"
+    "id": "1",
+    "title": "Welcome to my Node.js Journey",
+    "content": "Hello everyone! This is the first post on my custom-built blog engine. I'm excited to share my journey learning full-stack development with Node.js, Express, and EJS. In this project, I've implemented a custom file-based database system instead of using SQL/NoSQL to deeply understand data persistence.",
+    "author": "ashraf",
+    "date": "2023-10-15T10:00:00.000Z"
   },
   {
-    "title": "Post 2",
-    "content": "Content of post 2"
+    "id": "2",
+    "title": "Why I chose EJS over React for this project",
+    "content": "While React is amazing for Single Page Applications (SPAs), I wanted to master Server-Side Rendering (SSR) first. EJS allows me to generate dynamic HTML content on the server, which is great for SEO and initial load performance. It also helps me understand how the backend serves data to the frontend directly.",
+    "author": "ashraf",
+    "date": "2023-10-18T14:30:00.000Z"
   },
   {
-    "title": "Post 3",
-    "content": "Content of post 3"
+    "id": "3",
+    "title": "Understanding Middleware in Express",
+    "content": "Middleware functions are the backbone of Express. They have access to the request object (req), the response object (res), and the next middleware function in the application’s request-response cycle. I built a custom authentication middleware to protect my admin routes!",
+    "author": "dev_guru",
+    "date": "2023-10-22T09:15:00.000Z"
   },
   {
-    "title": "Post from web",
-    "content": "Content from web"
+    "id": "4",
+    "title": "The Challenge of Race Conditions",
+    "content": "One of the tricker parts of building a file-based database is handling concurrent writes. If two users post at the exact same time, the JSON file could obtain corrupted data. I solved this by implementing a custom Event Queue with a Mutex lock pattern. It ensures only one write operation happens at a time.",
+    "author": "tech_lead",
+    "date": "2023-10-25T16:45:00.000Z"
   },
   {
-    "title": "post 2 from web",
-    "content": "to show hadeer that I love here wever much "
+    "id": "5",
+    "title": "5 Tips for Clean Code in JavaScript",
+    "content": "1. Use meaningful variable names.\n2. Keep functions small and focused.\n3. Avoid global variables.\n4. Use async/await over raw promises for better readability.\n5. Always handle errors with try/catch blocks.",
+    "author": "senior_dev",
+    "date": "2023-11-01T11:20:00.000Z"
+  },
+  {
+    "id": "1770836591665",
+    "title": "from web",
+    "content": "from weeeeeeeeeeeeeeeeeeb",
+    "author": "user",
+    "date": "2026-02-11T19:03:11.665Z"
   }
 ]

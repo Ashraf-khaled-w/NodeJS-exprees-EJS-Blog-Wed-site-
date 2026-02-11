@@ -1,12 +1,29 @@
 <%-include("partials/header.ejs") %>
-<h1>Hello World</h1>
-<h1>Posts</h1>
-<ul>
-    <% posts.forEach(post => { %>
-        <li><%= post.title %></li>
-        <li><%= post.content %></li>
-    <% }) %>
-</ul>
-<a href="/add-post"><button>add post</button></a>
-<a href="/logout"><button>logout</button></a>
+<h1 class="page-title">Latest Posts</h1>
+<% if (posts.length > 0) { %>
+    <div class="posts-grid">
+        <% posts.forEach(post => { %>
+            <a href="/post/<%= post.id %>" class="post-card-link">
+                <article class="post-card">
+                    <h2><%= post.title %></h2>
+                    <div class="post-meta">
+                        <% if (post.author) { %>
+                            <span class="author">By <%= post.author %></span>
+                        <% } %>
+                        <% if (post.date) { %>
+                            <span class="date">• <%= new Date(post.date).toLocaleDateString() %></span>
+                        <% } %>
+                    </div>
+                    <p class="post-excerpt"><%= post.content %></p>
+                </article>
+            </a>
+        <% }) %>
+    </div>
+<% } else { %>
+    <div class="empty-state">
+        <h2>No posts found.</h2>
+        <p>Start writing your first blog post!</p>
+        <a href="/add-post" class="btn btn-primary" style="margin-top: 1rem;">Create Post</a>
+    </div>
+<% } %>
 <%-include("partials/footer.ejs") %>

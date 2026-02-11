@@ -19,6 +19,12 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(sessionMiddleware);
 
+app.use((req, res, next) => {
+  res.locals.user = req.session.user || null;
+  res.locals.isLoggedIn = req.session.isLoggedIn || false;
+  next();
+});
+
 app.get("/", async (req, res) => {
   if (!req.session.isLoggedIn) {
     res.redirect("/login");
@@ -34,8 +40,21 @@ app.get("/add-post", (req, res) => {
 
 app.post("/add-post", (req, res) => {
   let { title, content } = req.body;
-  addPost({ title, content });
+  const author = req.session.user ? req.session.user.username : "Anonymous";
+  const date = new Date();
+  const id = Date.now().toString();
+  addPost({ id, title, content, author, date });
   res.redirect("/");
+});
+
+app.get("/post/:id", async (req, res) => {
+  const posts = await readPosts();
+  const post = posts.find((p) => p.id === req.params.id);
+  if (post) {
+    res.render("post.ejs", { post });
+  } else {
+    res.redirect("/");
+  }
 });
 
 app.get("/login", (req, res) => {

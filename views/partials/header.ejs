@@ -3,11 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="/styles/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <title>Blog By NodeJS,Express&EJS</title>
   </head>
 
   <body>
-    <main></main>
-  </body>
-</html>
+    <header class="site-header">
+      <div class="container">
+        <a href="/" class="logo">NodeBlog</a>
+        <nav>
+          <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/add-post">New Post</a></li>
+            <% if (typeof locals.user !== 'undefined' || (typeof session !== 'undefined' && session.isLoggedIn)) { %>
+               <% if (locals.user && locals.user.role === 'admin') { %>
+                  <li><a href="/admin">Admin</a></li>
+               <% } %>
+               <li><a href="/logout" class="btn btn-logout">Logout</a></li>
+            <% } else { %>
+               <li><a href="/login" class="btn btn-primary">Login</a></li>
+            <% } %>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main class="container main-content">

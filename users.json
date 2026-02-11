@@ -18,13 +18,20 @@
     "username": "fromweb",
     "email": "fromweb@fromweb.com",
     "password": "fromweb",
-    "role": "user"
+    "role": "auther"
   },
   {
     "id": 4,
     "username": "userformweb",
     "email": "user@user.com",
     "password": "userformweb",
-    "role": "user"
+    "role": "auther"
+  },
+  {
+    "id": 5,
+    "username": "user",
+    "email": "user5@user.com",
+    "password": "user",
+    "role": "auther"
   }
 ]

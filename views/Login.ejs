@@ -11,14 +11,44 @@
   }
 </script>
 
-<h1>Login</h1>
-<form action="/login" method="POST">
-  <input type="text" name="username" placeholder="Username" />
-  <input type="password" name="password" placeholder="Password" id="password" />
-  <input type="checkbox" name="showPassword" id="showPassword" onclick="togglePassword()" />
-  <label for="showPassword">Show Password</label>
-  <button type="submit">Login</button>
-</form>
-<a href="/register">register</a>
+<div class="form-container">
+  <div class="form-header">
+    <h1>Welcome Back</h1>
+    <p>Sign in to your account</p>
+  </div>
+  <form action="/login" method="POST">
+    <div>
+      <label for="username">Username</label>
+      <input
+        type="text"
+        id="username"
+        name="username"
+        placeholder="Enter your username"
+        required
+      />
+    </div>
+    <div>
+      <label for="password">Password</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="Enter your password"
+        required
+      />
+    </div>
+    <div class="checkbox-group">
+      <input type="checkbox" id="showPassword" onclick="togglePassword()" />
+      <label for="showPassword" style="margin: 0; cursor: pointer">Show Password</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+  </form>
+  <div style="text-align: center; margin-top: 1.5rem; font-size: 0.9rem">
+    <p>
+      Don't have an account?
+      <a href="/register" style="color: var(--primary); font-weight: 500">Register here</a>
+    </p>
+  </div>
+</div>
 
 <%-include("partials/footer.ejs") %>
