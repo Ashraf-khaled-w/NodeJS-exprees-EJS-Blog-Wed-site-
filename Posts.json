@@ -33,12 +33,5 @@
     "content": "1. Use meaningful variable names.\n2. Keep functions small and focused.\n3. Avoid global variables.\n4. Use async/await over raw promises for better readability.\n5. Always handle errors with try/catch blocks.",
     "author": "senior_dev",
     "date": "2023-11-01T11:20:00.000Z"
-  },
-  {
-    "id": "1770836591665",
-    "title": "from web",
-    "content": "from weeeeeeeeeeeeeeeeeeb",
-    "author": "user",
-    "date": "2026-02-11T19:03:11.665Z"
   }
 ]
